@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require 'ruby_app_generator'
+app_name = ARGV.first
+gen = RubyAppGenerator::Generator.new
+gen.output app_name
