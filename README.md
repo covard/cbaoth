@@ -20,9 +20,11 @@ Or install it yourself as:
 ## Usage
 
 From the directory that you want to create your ruby app. Simply type:
-    ruby_app_generator my_app
 
-  *replace my_app with the name of your app*
+    $ ruby_app_generator my_app
+
+Replace *my_app* with the name of your app.
+
 ***
 ## Contributing
 
