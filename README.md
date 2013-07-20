@@ -16,10 +16,14 @@ Or install it yourself as:
 
     $ gem install ruby_app_generator
 
+***
 ## Usage
 
-TODO: Write usage instructions here
+From the directory that you want to create your ruby app. Simply type:
+    ruby_app_generator my_app
 
+  *replace my_app with the name of your app*
+***
 ## Contributing
 
 1. Fork it
