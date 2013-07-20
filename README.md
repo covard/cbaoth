@@ -1,6 +1,6 @@
 # RubyAppGenerator
 
-TODO: Write a gem description
+Ruby Gem to create a base ruby automation/whatever you want app from the command line. By simply typing ruby_app_generator app_name.
 
 ## Installation
 
