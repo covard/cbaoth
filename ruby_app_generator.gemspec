@@ -6,7 +6,7 @@ require 'ruby_app_generator/version'
 Gem::Specification.new do |spec|
   spec.name          = "ruby_app_generator"
   spec.version       = RubyAppGenerator::VERSION
-  spec.authors       = ["covard"]
+  spec.authors       = ["Curtis Ovard"]
   spec.email         = ["ovardcj@gmail.com"]
   spec.description   = %q{Gem to create base ruby automation apps from cli.}
   spec.summary       = %q{Gem to create a base ruby automation app from the command line. Simply typing ruby_app_generator}
