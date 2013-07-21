@@ -1,0 +1,72 @@
+require 'active_record'
+require 'yaml'
+require 'logger'
+require 'database_cleaner'
+
+CONFIG = YAML::load(File.open('config/database.yml'))
+
+task :default => :migrate
+namespace :db do
+  desc "Migrate the database through scripts in db/migrate. Target specific version with VERSION=x"
+  task :migrate => :environment do
+    ActiveRecord::Migrator.migrate('db/migrate', ENV["VERSION"] ? ENV["VERSION"].to_i : nil )
+  end
+ 
+  task :drop => :environment do
+    puts "----- Drop DB -----"
+    ActiveRecord::Base.connection.drop_database CONFIG["production"]["database"]
+  end
+ 
+  task :create do
+    puts "----- Create DB -----"
+    config = YAML::load(File.open('config/database.yml'))
+    config['production']['database'] = 'postgres'
+    ActiveRecord::Base.establish_connection config['production']
+    ActiveRecord::Base.connection.create_database CONFIG["production"]["database"]
+ 
+    ActiveRecord::Base.establish_connection CONFIG["production"]["database"]
+  end
+ 
+  task :reset => :environment do
+    puts "----- Reset DB -----"
+    Rake::Task["db:drop"].invoke
+    Rake::Task["db:create"].invoke
+    Rake::Task["db:migrate"].invoke
+    Rake::Task["db:seed"].invoke
+  end
+
+  desc "Truncate all existing data"
+  task :truncate, [:arg1] => :environment do |t, args|
+    if args[:arg1] =~ /all/i
+      DatabaseCleaner.clean_with :truncation
+    else
+      DatabaseCleaner.clean_with :truncation, { only: [args[:arg1]] }
+    end
+  end
+
+  namespace :test do
+    desc "Migrate test DB"
+    task :migrate do
+      ActiveRecord::Base.establish_connection CONFIG["test"]
+      ActiveRecord::Migrator.migrate('db/migrate', ENV["VERSION"] ? ENV["VERSION"].to_i : nil )
+
+    end
+
+    desc "Create test DB"
+    task :create do
+      puts "----- Create DB -----"
+      config = YAML::load(File.open('config/database.yml'))
+      config['test']['database'] = 'postgres'
+      ActiveRecord::Base.establish_connection config['test']
+      ActiveRecord::Base.connection.create_database CONFIG["test"]["database"]
+
+      ActiveRecord::Base.establish_connection CONFIG["test"]["database"]
+    end
+  end
+
+end
+ 
+task :environment do
+  ActiveRecord::Base.establish_connection CONFIG["production"]
+  ActiveRecord::Base.logger = Logger.new(File.open('log/database.log', 'a'))
+end
