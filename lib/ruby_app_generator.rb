@@ -8,10 +8,14 @@ module RubyAppGenerator
     end
 
     def init_variables
-      @wd = Dir.pwd
-      @gem_dir = File.dirname(__FILE__)
+      wd = Dir.pwd
+      gem_dir = File.dirname(__FILE__)
 
-      [@wd, @gem_dir]
+      [wd, gem_dir]
+    end
+
+    def create_dir_structure wd
+      system "mkdir -p #{wd}/lib #{wd}/bin"
     end
 
     def generate_base_files(app_name)
