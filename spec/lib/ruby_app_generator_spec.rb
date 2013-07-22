@@ -12,7 +12,7 @@ describe RubyAppGenerator::Generator do
   describe '#init_variables' do
     it { should respond_to :init_variables }
     it 'initializes and returns 2 instance variables' do
-      vars = []
+      vars = {}
       vars = @generator.init_variables
       expect(vars.length).to eq 2
     end
@@ -20,9 +20,22 @@ describe RubyAppGenerator::Generator do
 
   describe '#create_dir_structure' do
     it { should respond_to :create_dir_structure }
-    before { Dir.chdir('spec/testing_dir') }
-    it 'creates the apps directory structure'
+    previous_dir = Dir.pwd
+    before do
+      Dir.chdir("spec/testing_dir")
+      dirs = @generator.init_variables
+      @generator.create_dir_structure dirs[:working_directory]
+    end
 
+    it 'creates the bin dir' do
+      expect(Dir.exist?("bin")).to be_true
+    end
+
+    it 'creates the lib dir' do
+      expect(Dir.exist?('lib')).to be_true
+    end
+
+    after { Dir.chdir(previous_dir) }
   end
 
   describe '#generate_base_files' do

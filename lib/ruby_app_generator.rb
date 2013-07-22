@@ -11,7 +11,7 @@ module RubyAppGenerator
       wd = Dir.pwd
       gem_dir = File.dirname(__FILE__)
 
-      [wd, gem_dir]
+      { working_directory: wd, gem_directory: gem_dir }
     end
 
     def create_dir_structure wd
