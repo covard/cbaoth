@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe RubyAppGenerator::Generator do
+  before :all do
+    FileUtils.mkdir_p("spec/testing_dir/test")
+    Dir.chdir("spec/testing_dir/test")
+  end
   before :each do
     @generator = RubyAppGenerator::Generator.new
   end
@@ -22,7 +26,7 @@ describe RubyAppGenerator::Generator do
     it { should respond_to :create_dir_structure }
     previous_dir = Dir.pwd
     before do
-      Dir.chdir("spec/testing_dir")
+      # Dir.chdir("spec/testing_dir/test")
       dirs = @generator.init_variables
       @generator.create_dir_structure dirs[:working_directory]
     end
@@ -35,26 +39,46 @@ describe RubyAppGenerator::Generator do
       expect(Dir.exist?('lib')).to be_true
     end
 
-    after { Dir.chdir(previous_dir) }
+    it 'creates the config dir' do
+      expect(Dir.exist?('config')).to be_true
+    end
+
+    it 'creates the db dir' do
+      expect(Dir.exist?('db')).to be_true
+    end
+
+    it 'creates the db/migrate dir' do
+      expect(Dir.exist?('db/migrate')).to be_true
+    end
+
+    # after { Dir.chdir(previous_dir) }
   end
 
   describe '#generate_base_files' do
     it { should respond_to :generate_base_files }
-    it 'creates a rakefile'
+    before { 
+      wd = Dir.pwd
+      @generator.generate_base_files wd, "../../../" 
+    }
+    it 'creates a rakefile' do
+      expect(File.exist?("Rakefile")).to be_true
+    end
 
-    it 'creates a gemfile'
+    it 'creates a gemfile' do
+      expect(File.exist?("Gemfile")).to be_true
+    end
 
-    it 'creates a readmefile'
+    it 'creates a readmefile' do
+      expect(File.exist?("README.md")).to be_true
+    end
+
+    it 'creates a database.yml file' do
+      expect(File.exist?("config/database.yml")).to be_true
+    end
   end
 
-  describe '#init_rspec' do
-    it { should respond_to :init_rspec }
-    it 'initializes respec'
-  end
-
-  describe '#init_guard' do
-    it { should respond_to :init_guard }
-    it 'initializes guard'
+  describe '#alert_user' do
+    it { should respond_to :alert_user }
   end
   
 end

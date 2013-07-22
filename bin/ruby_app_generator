@@ -16,6 +16,9 @@ if app_name == '--help'
   puts 'It will generate a base ruby app within your current directory.'
   puts
   puts "\t $ ruby_app_generator my_app_name"
+  puts
+  puts "Then follow the instructions output to the consel after that and you are set. The instructions just tell you to cd into"
+  puts "new app dir and run the respec and guard init commands."
 else
   gen = RubyAppGenerator::Generator.new
   gen.generate app_name

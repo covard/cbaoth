@@ -11,9 +11,10 @@ RSpec.configure do |config|
   config.treat_symbols_as_metadata_keys_with_true_values = true
   config.run_all_when_everything_filtered = true
   config.filter_run :focus
+
+  # todo: change this to after so we don't have unwanted test dir's/files
   config.after :suite do
-    Dir.delete "spec/testing_dir/bin"
-    Dir.delete "spec/testing_dir/lib"
+    FileUtils.rm_rf "spec/testing_dir"
   end
 
   # Run specs in random order to surface order dependencies. If you find an
