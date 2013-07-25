@@ -1,6 +1,6 @@
-require "ruby_app_generator/version"
+require "cbaoth/version"
 
-module RubyAppGenerator
+module Cbaoth
   
   class Generator
 
@@ -50,7 +50,7 @@ module RubyAppGenerator
       puts "\t$ rspec --init"
       puts "\t$ guard init rspec"
       puts
-      puts "That's it. Thanks for using ruby_app_generator."
+      puts "That's it. Thanks for using cbaoth."
       puts "Happy rubying =) - #{ENV["LOGNAME"]}"
     end
 

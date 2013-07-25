@@ -1,20 +1,20 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'ruby_app_generator/version'
+require 'cbaoth/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "ruby_app_generator"
-  spec.version       = RubyAppGenerator::VERSION
+  spec.name          = "cbaoth"
+  spec.version       = Cbaoth::VERSION
   spec.authors       = ["Curtis Ovard"]
   spec.email         = ["ovardcj@gmail.com"]
   spec.description   = %q{Gem to create base ruby automation apps from cli.}
-  spec.summary       = %q{Gem to create a base ruby automation app from the command line. Simply typing ruby_app_generator}
-  spec.homepage      = "https://github.com/covard/ruby_app_generator"
+  spec.summary       = %q{Gem to create a base ruby automation app from the command line. Simply typing cbaoth my_app_name}
+  spec.homepage      = "https://github.com/covard/cbaoth"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
-  spec.executables   = ['ruby_app_generator']
+  spec.executables   = ['cbaoth']
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 

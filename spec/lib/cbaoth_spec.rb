@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-describe RubyAppGenerator::Generator do
+describe Cbaoth::Generator do
   before :all do
     FileUtils.mkdir_p("spec/testing_dir/test")
     Dir.chdir("spec/testing_dir/test")
   end
   before :each do
-    @generator = RubyAppGenerator::Generator.new
+    @generator = Cbaoth::Generator.new
   end
 
   describe '#generate' do

@@ -1,12 +1,12 @@
-# RubyAppGenerator
+# Cbaoth
 
-Ruby Gem to create a base ruby automation/whatever you want app from the command line. By simply typing ruby_app_generator app_name.
+Ruby Gem to create a base ruby automation/whatever you want app from the command line. By simply typing cbaoth app_name.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'ruby_app_generator'
+    gem 'cbaoth'
 
 And then execute:
 
@@ -14,14 +14,14 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install ruby_app_generator
+    $ gem install cbaoth
 
 ***
 ## Usage
 
 From the directory that you want to create your ruby app. Simply type:
 
-    $ ruby_app_generator my_app
+    $ cbaoth my_app
 
 Replace *my_app* with the name of your app.
 
