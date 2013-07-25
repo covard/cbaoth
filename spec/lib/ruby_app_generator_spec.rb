@@ -17,7 +17,7 @@ describe RubyAppGenerator::Generator do
     it { should respond_to :init_variables }
     it 'initializes and returns 2 instance variables' do
       vars = {}
-      vars = @generator.init_variables
+      vars = @generator.init_variables 'test'
       expect(vars.length).to eq 2
     end
   end
@@ -27,7 +27,7 @@ describe RubyAppGenerator::Generator do
     previous_dir = Dir.pwd
     before do
       # Dir.chdir("spec/testing_dir/test")
-      dirs = @generator.init_variables
+      dirs = @generator.init_variables 'test'
       @generator.create_dir_structure dirs[:working_directory]
     end
 
