@@ -51,7 +51,9 @@ describe Cbaoth::Generator do
       expect(Dir.exist?('db/migrate')).to be_true
     end
 
-    # after { Dir.chdir(previous_dir) }
+    it 'creates the log dir' do
+      expect(Dir.exist?('log')).to be_true
+    end
   end
 
   describe '#generate_base_files' do

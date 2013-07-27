@@ -28,7 +28,7 @@ module Cbaoth
     def create_dir_structure wd
       puts "creating base app dir structure"
       puts
-      system "mkdir -p #{wd}/lib #{wd}/bin #{wd}/config #{wd}/db/migrate"
+      system "mkdir -p #{wd}/lib #{wd}/bin #{wd}/config #{wd}/db/migrate #{wd}/log"
     end
 
     def generate_base_files wd, gem_dir
@@ -39,6 +39,7 @@ module Cbaoth
       system "cp #{base_files}/base_rakefile #{wd}/Rakefile"
       system "cp #{base_files}/base_readme #{wd}/README.md"
       system "cp #{base_files}/base_database.yml #{wd}/config/database.yml"
+      system "touch #{wd}/process.rb"
     end
 
     def alert_user app_name

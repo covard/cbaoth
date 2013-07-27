@@ -33,3 +33,10 @@ Replace *my_app* with the name of your app.
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+***
+## Gem Name Info
+
+The name, for those non Star Wars g33ks, comes from the [Timothy Zahn](http://starwars.wikia.com/wiki/Timothy_Zahn) books. The character [Joruus C'baoth](http://starwars.wikia.com/wiki/Joruus_C%27baoth) is a clone of a Jedi, yeah yeah they said you couldn't clone a Jedi.He is a dark Jedi.
+
+C'baoth, or in our case cbaoth, incidentally, is pronounced 'SA-bay-oth'
