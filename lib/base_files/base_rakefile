@@ -14,25 +14,29 @@ namespace :db do
  
   task :drop => :environment do
     puts "----- Drop DB -----"
-    ActiveRecord::Base.connection.drop_database CONFIG["production"]["database"]
+    ActiveRecord::Base.establish_connection CONFIG["production"]
+    ActiveRecord::Base.connection.tables.each do |table|
+      ActiveRecord::Base.connection.execute("DROP TABLE IF EXISTS #{table}")
+      puts "Dropped #{table}"
+    end
   end
  
   task :create do
     puts "----- Create DB -----"
     config = YAML::load(File.open('config/database.yml'))
-    config['production']['database'] = 'postgres'
-    ActiveRecord::Base.establish_connection config['production']
-    ActiveRecord::Base.connection.create_database CONFIG["production"]["database"]
+    base = config['production'].dup
+    base['database'] = 'postgres'
+    db = ActiveRecord::Base.establish_connection base
+    db.connection.create_database CONFIG["production"]["database"]
+    db.disconnect! if db.connected?
  
-    ActiveRecord::Base.establish_connection CONFIG["production"]["database"]
+    ActiveRecord::Base.establish_connection CONFIG["production"]
   end
  
   task :reset => :environment do
     puts "----- Reset DB -----"
     Rake::Task["db:drop"].invoke
-    Rake::Task["db:create"].invoke
     Rake::Task["db:migrate"].invoke
-    Rake::Task["db:seed"].invoke
   end
 
   desc "Truncate all existing data"
@@ -60,7 +64,7 @@ namespace :db do
       ActiveRecord::Base.establish_connection config['test']
       ActiveRecord::Base.connection.create_database CONFIG["test"]["database"]
 
-      ActiveRecord::Base.establish_connection CONFIG["test"]["database"]
+      ActiveRecord::Base.establish_connection CONFIG["test"]
     end
   end
 
