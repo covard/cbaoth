@@ -2,33 +2,23 @@ require 'spec_helper'
 
 describe Cbaoth::Generator do
   before :all do
-    FileUtils.mkdir_p("spec/testing_dir/test")
-    Dir.chdir("spec/testing_dir/test")
-  end
-  before :each do
+    FileUtils.mkdir_p("spec/testing_dir")
+    Dir.chdir("spec/testing_dir")
     @generator = Cbaoth::Generator.new
   end
 
-  describe '#generate' do
-    it { should respond_to :generate }
-  end
-
-  describe '#init_variables' do
+  describe 'methods' do
     it { should respond_to :init_variables }
-    it 'initializes and returns 2 instance variables' do
-      vars = {}
-      vars = @generator.init_variables 'test'
-      expect(vars.length).to eq 2
-    end
+    it { should respond_to :generate }
+    it { should respond_to :create_dir_structure }
+    it { should respond_to :generate_base_files }
+    it { should respond_to :alert_user }
   end
 
-  describe '#create_dir_structure' do
-    it { should respond_to :create_dir_structure }
-    previous_dir = Dir.pwd
-    before do
-      # Dir.chdir("spec/testing_dir/test")
-      dirs = @generator.init_variables 'test'
-      @generator.create_dir_structure dirs[:working_directory]
+  describe '#generate' do
+    it 'generates a base ruby app' do
+      @generator.generate 'test'
+      Dir.chdir "test"
     end
 
     it 'creates the bin dir' do
@@ -54,14 +44,6 @@ describe Cbaoth::Generator do
     it 'creates the log dir' do
       expect(Dir.exist?('log')).to be_true
     end
-  end
-
-  describe '#generate_base_files' do
-    it { should respond_to :generate_base_files }
-    before { 
-      wd = Dir.pwd
-      @generator.generate_base_files wd, "../../../" 
-    }
     it 'creates a rakefile' do
       expect(File.exist?("Rakefile")).to be_true
     end
@@ -79,8 +61,8 @@ describe Cbaoth::Generator do
     end
   end
 
-  describe '#alert_user' do
-    it { should respond_to :alert_user }
+  after :all do
+    Dir.chdir "../.."
+    FileUtils.rm_rf "testing_dir"
   end
-  
 end
