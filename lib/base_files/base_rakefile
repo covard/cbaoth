@@ -5,6 +5,14 @@ require 'database_cleaner'
 
 CONFIG = YAML::load(File.open('config/database.yml'))
 
+namespace :run do
+  puts "todo: change the description of this for your needs."
+  desc "Rakefile to run your app"
+  task :import_mbm_data  do
+    system "ruby process.rb"
+  end
+end
+
 task :default => :migrate
 namespace :db do
   desc "Migrate the database through scripts in db/migrate. Target specific version with VERSION=x"
