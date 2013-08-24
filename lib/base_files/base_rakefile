@@ -20,15 +20,6 @@ namespace :db do
     ActiveRecord::Migrator.migrate('db/migrate', ENV["VERSION"] ? ENV["VERSION"].to_i : nil )
   end
  
-  task :drop => :environment do
-    puts "----- Drop DB -----"
-    ActiveRecord::Base.establish_connection CONFIG["production"]
-    ActiveRecord::Base.connection.tables.each do |table|
-      ActiveRecord::Base.connection.execute("DROP TABLE IF EXISTS #{table}")
-      puts "Dropped #{table}"
-    end
-  end
- 
   task :create do
     puts "----- Create DB -----"
     config = YAML::load(File.open('config/database.yml'))
@@ -43,12 +34,13 @@ namespace :db do
  
   task :reset => :environment do
     puts "----- Reset DB -----"
-    Rake::Task["db:drop"].invoke
+    Rake::Task["db:truncate"].invoke('all')
     Rake::Task["db:migrate"].invoke
   end
 
   desc "Truncate all existing data"
   task :truncate, [:arg1] => :environment do |t, args|
+    puts "*** Truncate - #{args[:arg1]}"
     if args[:arg1] =~ /all/i
       DatabaseCleaner.clean_with :truncation
     else
@@ -61,7 +53,6 @@ namespace :db do
     task :migrate do
       ActiveRecord::Base.establish_connection CONFIG["test"]
       ActiveRecord::Migrator.migrate('db/migrate', ENV["VERSION"] ? ENV["VERSION"].to_i : nil )
-
     end
 
     desc "Create test DB"
