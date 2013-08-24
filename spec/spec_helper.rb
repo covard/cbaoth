@@ -14,6 +14,7 @@ RSpec.configure do |config|
 
   # todo: change this to after so we don't have unwanted test dir's/files
   config.after :suite do
+    FileUtils.rm_rf "../../testing_dir"
   end
 
   # Run specs in random order to surface order dependencies. If you find an

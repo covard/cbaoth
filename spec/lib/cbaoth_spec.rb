@@ -16,8 +16,13 @@ describe Cbaoth::Generator do
   end
 
   describe '#generate' do
+    it 'throws an argument error if arguments are not passed' do
+      expect { @generator.generate }.to raise_error(ArgumentError)
+    end
+
     it 'generates a base ruby app' do
-      @generator.generate 'test'
+      n = nil
+      @generator.generate "test", n
       Dir.chdir "test"
     end
 
@@ -59,10 +64,23 @@ describe Cbaoth::Generator do
     it 'creates a database.yml file' do
       expect(File.exist?("config/database.yml")).to be_true
     end
-  end
 
-  after :all do
-    Dir.chdir "../.."
-    FileUtils.rm_rf "testing_dir"
+    describe 'git init' do
+      it 'inits git' do
+        n = ""
+        @generator.generate "test", n
+        Dir.chdir "test"
+        expect(Dir.exist?('.git')).to be_true
+      end
+    end
+
+    describe 'ignore git init' do
+      it 'inits git' do
+        n = "-g"
+        @generator.generate "test", n
+        Dir.chdir "test"
+        expect(Dir.exist?('.git')).to be_false
+      end
+    end
   end
 end

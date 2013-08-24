@@ -4,6 +4,7 @@ require 'cbaoth'
 require 'cbaoth/version'
 
 app_name = ARGV.first
+flag = ARGV[1] || ""
 
 if app_name == '--help'
   puts
@@ -21,5 +22,5 @@ if app_name == '--help'
   puts "new app dir and run the respec and guard init commands."
 else
   gen = Cbaoth::Generator.new
-  gen.generate app_name
+  gen.generate app_name, flag
 end

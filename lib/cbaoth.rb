@@ -4,11 +4,12 @@ module Cbaoth
   
   class Generator
 
-    def generate app_name
+    def generate app_name, flag
       vars = init_variables app_name
       create_app_name_dir app_name
       create_dir_structure vars[:working_directory]
       generate_base_files vars[:working_directory], vars[:gem_directory]
+      init_git app_name unless flag == '-g'
       alert_user app_name
     end
 
@@ -40,6 +41,12 @@ module Cbaoth
       system "cp #{base_files}/base_readme #{wd}/README.md"
       system "cp #{base_files}/base_database.yml #{wd}/config/database.yml"
       system "touch #{wd}/process.rb"
+    end
+
+    def init_git app_name
+      puts
+      puts "\tInitializing git"
+      system "git init #{app_name}"
     end
 
     def alert_user app_name
