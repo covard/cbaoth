@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["ovardcj@gmail.com"]
   spec.description   = %q{Gem to create base ruby automation apps from cli.}
   spec.summary       = %q{Gem to create a base ruby automation app from the command line. Simply typing cbaoth my_app_name}
-  spec.homepage      = "https://github.com/covard/ruby_app_generator"
+  spec.homepage      = "https://github.com/covard/cbaoth"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
