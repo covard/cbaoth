@@ -5,9 +5,17 @@ production:
   password: 
   host: localhost
 
+development:
+  adapter: postgresql
+  database: 
+  username: 
+  password: 
+  host: localhost
+
 test:
   adapter: postgresql
   database: 
   username: 
   password: 
   host: localhost
+
