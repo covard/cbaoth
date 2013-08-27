@@ -40,6 +40,7 @@ module Cbaoth
       system "cp #{base_files}/base_rakefile #{wd}/Rakefile"
       system "cp #{base_files}/base_readme #{wd}/README.md"
       system "cp #{base_files}/base_database.yml #{wd}/config/database.yml"
+      system "cp #{base_files}/base_gitignore #{wd}/.gitignore"
       system "touch #{wd}/process.rb"
     end
 
