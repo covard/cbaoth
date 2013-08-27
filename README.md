@@ -24,6 +24,7 @@ From the directory that you want to create your ruby app. Simply type:
     $ cbaoth my_app
 
 To not initialize git:
+
     $ cbaoth my_app -g
 
 Replace *my_app* with the name of your app.
