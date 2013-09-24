@@ -8,7 +8,7 @@ module Cbaoth
       vars = init_variables app_name
       create_app_name_dir app_name
       create_dir_structure vars[:working_directory]
-      generate_base_files vars[:working_directory], vars[:gem_directory]
+      generate_base_files vars[:working_directory], vars[:gem_directory], flag
       init_git app_name unless flag == '-g'
       alert_user app_name
     end
@@ -32,7 +32,7 @@ module Cbaoth
       system "mkdir -p #{wd}/lib #{wd}/bin #{wd}/config #{wd}/db/migrate #{wd}/log"
     end
 
-    def generate_base_files wd, gem_dir
+    def generate_base_files wd, gem_dir, flag
       puts "generating base files"
       puts
       base_files = gem_dir + "/base_files"
@@ -40,7 +40,7 @@ module Cbaoth
       system "cp #{base_files}/base_rakefile #{wd}/Rakefile"
       system "cp #{base_files}/base_readme #{wd}/README.md"
       system "cp #{base_files}/base_database.yml #{wd}/config/database.yml"
-      system "cp #{base_files}/base_gitignore #{wd}/.gitignore"
+      system "cp #{base_files}/base_gitignore #{wd}/.gitignore" unless flag == '-g'
       system "touch #{wd}/process.rb"
     end
 
