@@ -1,9 +1,7 @@
 require "cbaoth/version"
 
 module Cbaoth
-  
   class Generator
-
     def generate app_name, flag
       vars = init_variables app_name
       create_app_name_dir app_name
@@ -62,7 +60,5 @@ module Cbaoth
       puts "That's it. Thanks for using cbaoth."
       puts "Happy rubying =) - #{ENV["LOGNAME"]}"
     end
-
   end
-
 end
