@@ -30,7 +30,7 @@ To not initialize git:
 Replace *my_app* with the name of your app.
 
 ## Help/Info
-    $ cbaoth --help
+    $ cbaoth --help or $ cbaoth -h
 
 ***
 ## Contributing
