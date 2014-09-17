@@ -6,7 +6,7 @@ require 'cbaoth/version'
 app_name = ARGV.first
 flag = ARGV[1] || ""
 
-if app_name == '--help' || app_name -h
+if app_name == '--help' || app_name == '-h'
   puts
   puts "cbaoth v#{Cbaoth::VERSION}"
   puts 'Author: Curtis Ovard'

@@ -8,6 +8,7 @@ module Cbaoth
       create_dir_structure vars[:working_directory]
       generate_base_files vars[:working_directory], vars[:gem_directory], flag
       init_git app_name unless flag == '-g'
+      update_readme_file app_name, vars[:working_directory]
       alert_user app_name
     end
 
@@ -40,6 +41,14 @@ module Cbaoth
       system "cp #{base_files}/base_database.yml #{wd}/config/database.yml"
       system "cp #{base_files}/base_gitignore #{wd}/.gitignore" unless flag == '-g'
       system "touch #{wd}/process.rb"
+    end
+
+    def update_readme_file app_name, app_dir
+      File.open(File.join(app_dir, 'README.md'), 'w') do |f|
+        f.puts "# App: #{app_name}"
+        f.puts '***'
+        f.puts "TODO: enter information about your app."
+      end
     end
 
     def init_git app_name
