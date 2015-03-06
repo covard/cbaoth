@@ -1,5 +1,6 @@
 # Cbaoth
 
+[![Gem Version](https://badge.fury.io/rb/cbaoth.png)](http://badge.fury.io/rb/cbaoth)
 [![cbaoth API Documentation](https://www.omniref.com/ruby/gems/cbaoth.png)](https://www.omniref.com/ruby/gems/cbaoth)
 
 Ruby Gem to create a base ruby automation/whatever you want app from the command line. By simply typing cbaoth app_name.
