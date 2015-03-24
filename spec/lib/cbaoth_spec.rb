@@ -27,42 +27,42 @@ describe Cbaoth::Generator do
     end
 
     it 'creates the bin dir' do
-      expect(Dir.exist?("bin")).to be_true
+      expect(Dir.exist?("bin")).to be_truthy
     end
 
     it 'creates the lib dir' do
-      expect(Dir.exist?('lib')).to be_true
+      expect(Dir.exist?('lib')).to be_truthy
     end
 
     it 'creates the config dir' do
-      expect(Dir.exist?('config')).to be_true
+      expect(Dir.exist?('config')).to be_truthy
     end
 
     it 'creates the db dir' do
-      expect(Dir.exist?('db')).to be_true
+      expect(Dir.exist?('db')).to be_truthy
     end
 
     it 'creates the db/migrate dir' do
-      expect(Dir.exist?('db/migrate')).to be_true
+      expect(Dir.exist?('db/migrate')).to be_truthy
     end
 
     it 'creates the log dir' do
-      expect(Dir.exist?('log')).to be_true
+      expect(Dir.exist?('log')).to be_truthy
     end
     it 'creates a rakefile' do
-      expect(File.exist?("Rakefile")).to be_true
+      expect(File.exist?("Rakefile")).to be_truthy
     end
 
     it 'creates a gemfile' do
-      expect(File.exist?("Gemfile")).to be_true
+      expect(File.exist?("Gemfile")).to be_truthy
     end
 
     it 'creates a readmefile' do
-      expect(File.exist?("README.md")).to be_true
+      expect(File.exist?("README.md")).to be_truthy
     end
 
     it 'creates a database.yml file' do
-      expect(File.exist?("config/database.yml")).to be_true
+      expect(File.exist?("config/database.yml")).to be_truthy
     end
 
     describe 'git init' do
@@ -70,7 +70,7 @@ describe Cbaoth::Generator do
         n = ""
         @generator.generate "test", n
         Dir.chdir "test"
-        expect(Dir.exist?('.git')).to be_true
+        expect(Dir.exist?('.git')).to be_truthy
       end
     end
 
@@ -79,7 +79,7 @@ describe Cbaoth::Generator do
         n = "-g"
         @generator.generate "test", n
         Dir.chdir "test"
-        expect(Dir.exist?('.git')).to be_false
+        expect(Dir.exist?('.git')).to be_falsey
       end
     end
   end
