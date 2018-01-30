@@ -1,6 +1,7 @@
 # Cbaoth
 
 [![Gem Version](https://badge.fury.io/rb/cbaoth.png)](http://badge.fury.io/rb/cbaoth)
+
 [![cbaoth API Documentation](https://vignette.wikia.nocookie.net/starwars/images/8/84/Joruscbaoth.jpg/revision/latest?cb=20080204002126)](https://rubygems.org/gems/cbaoth)
 
 Ruby Gem to create a base ruby automation/whatever you want app from the command line. By simply typing cbaoth app_name.
