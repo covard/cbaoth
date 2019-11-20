@@ -8,16 +8,6 @@ Ruby Gem to create a base ruby automation/whatever you want app from the command
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-    gem 'cbaoth'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
     $ gem install cbaoth
 
 ***
@@ -34,7 +24,9 @@ To not initialize git:
 Replace *my_app* with the name of your app.
 
 ## Help/Info
-    $ cbaoth --help or $ cbaoth -h
+    $ cbaoth --help 
+    or 
+    $ cbaoth -h
 
 ***
 ## Contributing
